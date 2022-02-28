@@ -18,6 +18,8 @@ def main():
     base = datetime.datetime.today()
     time_list = [(base + datetime.timedelta(hours=x)).strftime("%m-%d-%Y-%H") for x in range(len(words))]
 
+    allowed_words = {w: True for w in words}
+
     word_dict = dict({})
     for i, word in enumerate(words):
         word_info = {}
@@ -27,6 +29,9 @@ def main():
 
     with open('./word-files/words.json', "w") as fileObj:
         json.dump(word_dict, fileObj, indent=2)
+    
+    with open('./word-files/allowed-words.json', "w") as fileObj:
+        json.dump(allowed_words, fileObj, indent=2)
 
     print("word dictionary creation complete.")
 
