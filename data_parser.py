@@ -12,16 +12,20 @@ def main():
     words = []
     with open('./word-files/hourdle-allowed-guesses', "r") as wf:
         words = [word.rstrip() for word in wf]
-    
-    random.shuffle(words)
-    
-    base = datetime.datetime.today()
-    time_list = [(base + datetime.timedelta(hours=x)).strftime("%m-%d-%Y-%H") for x in range(len(words))]
 
     allowed_words = {w: True for w in words}
 
+    real_words = []
+    with open('./word-files/hourdle-words', "r") as wf:
+        real_words = [word.rstrip() for word in wf]
+    
+    random.shuffle(real_words)
+    
+    base = datetime.datetime.today()
+    time_list = [(base + datetime.timedelta(hours=x)).strftime("%m-%d-%Y-%H") for x in range(len(real_words))]
+
     word_dict = dict({})
-    for i, word in enumerate(words):
+    for i, word in enumerate(real_words):
         word_info = {}
         word_info["word"] = word
         word_info["count"] = dict(Counter(word))
