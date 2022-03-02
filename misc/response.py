@@ -23,6 +23,4 @@ def check_word(request_body, store):
         if c != solution_word[i] and c in solution_count and solution_count[c] > 0:
             result[i] = misplaced
 
-    print(solution_count)
-
     return {"allowed": True, "result": result}
