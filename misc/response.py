@@ -20,7 +20,8 @@ def check_word(request_body, store):
             solution_count[c] -= 1
             continue
 
-        if c != solution_word[i] and c in solution_count and solution_count[c] > 0:
+    for i, c in enumerate(request_word):
+        if c!= solution_word[i] and c in solution_count and solution_count[c] > 0:
             result[i] = misplaced
 
     return {"allowed": True, "result": result}
